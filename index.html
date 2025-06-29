@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦想民宿 - 温馨舒适的住宿体验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .rooms-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .room-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ddd, #eee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .room-content {
+            padding: 1.5rem;
+        }
+        
+        .room-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .room-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .room-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .room-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .available {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .occupied {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .contact-section {
+            padding: 4rem 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>梦想民宿</h1>
+            <p class="subtitle">体验家的温暖，享受旅途的美好</p>
+        </div>
+    </header>
+
+    <section class="rooms-section">
+        <div class="container">
+            <h2 class="section-title">精品客房</h2>
+            <div class="rooms-grid" id="rooms-container">
+                <!-- 房间信息将通过JavaScript动态加载 -->
+                <div class="room-card">
+                    <div class="room-image">温馨大床房</div>
+                    <div class="room-content">
+                        <h3 class="room-title">温馨大床房</h3>
+                        <p class="room-description">宽敞舒适的大床房，配有独立卫浴、空调、WiFi等设施</p>
+                        <div class="room-price">¥288/晚</div>
+                        <span class="room-status available">可预订</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">浪漫情侣套房</div>
+                    <div class="room-content">
+                        <h3 class="room-title">浪漫情侣套房</h3>
+                        <p class="room-description">精心设计的情侣套房，营造浪漫温馨的住宿体验</p>
+                        <div class="room-price">¥388/晚</div>
+                        <span class="room-status occupied">已入住</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">家庭亲子房</div>
+                    <div class="room-content">
+                        <h3 class="room-title">家庭亲子房</h3>
+                        <p class="room-description">适合家庭入住，配有儿童床和玩具，让孩子也能开心度假</p>
+                        <div class="room-price">¥428/晚</div>
+                        <span class="room-status available">可预订</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact-info">
+                <div class="contact-item">📍 地址：某某市某某区美丽街道123号</div>
+                <div class="contact-item">📞 电话：138-0000-0000</div>
+                <div class="contact-item">📧 邮箱：info@dreambnb.com</div>
+                <div class="contact-item">🕒 营业时间：24小时服务</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 梦想民宿. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 这里可以添加JavaScript来动态加载CMS数据
+        // 实际使用时会连接到Netlify CMS的数据
+        console.log('网站加载完成');
+    </script>
+</body>
+</html>
