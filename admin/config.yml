@@ -9,31 +9,28 @@ public_folder: "/images/uploads" # 网站上访问这些图片的路径
 
 # 内容集合配置
 collections:
-  # 集合 1: 网站全局设置 (文件集合)
-  - name: "settings"
-    label: "网站设置"
-    files:
-      - file: "_settings/site.json" # 此集合只管理这一个文件
-        label: "基本信息"
-        name: "site_settings"
-        fields:
-          - { label: "网站标题", name: "title", widget: "string" }
-          - { label: "网站标语", name: "tagline", widget: "string" }
+- name: "settings"
+  label: "网站设置"
+  files:
+    - file: "_settings/site.json"
+      label: "基本信息"
+      name: "site_settings"
+      fields:
+        - { label: "网站标题", name: "title", widget: "string" }
+        - { label: "网站标语", name: "tagline", widget: "string" }
 
-  # 集合 2: 客房管理 (使用文件集合管理所有房间)
-  # 这种方式对初学者最友好，因为所有数据都在一个文件里
-  - name: "rooms_list"
-    label: "客房管理"
-    file: "api/rooms.json" # 所有房间数据都保存在这个文件里
-    label_singular: "客房列表"
-    description: "在这里管理所有的客房信息"
-    fields:
-      - name: "rooms"
-        label: "客房列表"
-        label_singular: "客房"
-        widget: "list" # 这是一个列表，可以添加多个客房
-        fields:
-          - { label: "房间名称", name: "name", widget: "string" }
-          - { label: "房间描述", name: "description", widget: "text" }
-          - { label: "价格 (每晚)", name: "price", widget: "number" }
-          - { label: "房间图片", name: "image", widget: "image" }
+- name: "rooms_list"
+  label: "客房管理"
+  file: "api/rooms.json" # 确保是 file，并且缩进正确
+  label_singular: "客房列表"
+  description: "在这里管理所有的客房信息"
+  fields:
+    - name: "rooms"
+      label: "客房列表"
+      label_singular: "客房"
+      widget: "list"
+      fields:
+        - { label: "房间名称", name: "name", widget: "string" }
+        - { label: "房间描述", name: "description", widget: "text" }
+        - { label: "价格 (每晚)", name: "price", widget: "number" }
+        - { label: "房间图片", name: "image", widget: "image" }
