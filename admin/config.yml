@@ -4,33 +4,42 @@ backend:
   branch: main # 确保这是你的 GitHub 主分支名称，可能是 main 或 master
 
 # 媒体文件（如图片）的配置
-media_folder: "images/uploads" # 上传的图片将保存到项目的这个文件夹
-public_folder: "/images/uploads" # 网站上访问这些图片的路径
+# 上传的图片将保存到项目的 "images/uploads" 文件夹
+media_folder: "images/uploads"
+# 网站上访问这些图片的公开路径
+public_folder: "/images/uploads"
 
 # 内容集合配置
 collections:
-- name: "settings"
-  label: "网站设置"
-  files:
-    - file: "_settings/site.json"
-      label: "基本信息"
-      name: "site_settings"
-      fields:
-        - { label: "网站标题", name: "title", widget: "string" }
-        - { label: "网站标语", name: "tagline", widget: "string" }
+  # 集合 1: 网站全局设置
+  - name: "settings"
+    label: "网站设置"
+    # 这是一个 "文件集合"，用于管理单个或多个特定文件
+    files:
+      - file: "_settings/site.json" # 此集合只管理这一个文件
+        label: "基本信息"
+        name: "site_settings"
+        fields:
+          - { label: "网站标题", name: "title", widget: "string" }
+          - { label: "网站标语", name: "tagline", widget: "string" }
 
-- name: "rooms_list"
-  label: "客房管理"
-  file: "api/rooms.json" # 确保是 file，并且缩进正确
-  label_singular: "客房列表"
-  description: "在这里管理所有的客房信息"
-  fields:
-    - name: "rooms"
-      label: "客房列表"
-      label_singular: "客房"
-      widget: "list"
-      fields:
-        - { label: "房间名称", name: "name", widget: "string" }
-        - { label: "房间描述", name: "description", widget: "text" }
-        - { label: "价格 (每晚)", name: "price", widget: "number" }
-        - { label: "房间图片", name: "image", widget: "image" }
+  # 集合 2: 客房管理
+  - name: "rooms_list"
+    label: "客房管理"
+    # 使用 "file" 属性，将所有客房数据保存在这一个文件里
+    # 这种方式对初学者最友好
+    file: "api/rooms.json"
+    label_singular: "客房列表"
+    description: "在这里管理所有的客房信息"
+    fields:
+      # 这个 "list" 类型的字段，允许你在一个文件里创建多条记录
+      - name: "rooms"
+        label: "客房列表"
+        label_singular: "客房"
+        widget: "list"
+        # 下面是列表里每个 "客房" 项目包含的字段
+        fields:
+          - { label: "房间名称", name: "name", widget: "string" }
+          - { label: "房间描述", name: "description", widget: "text" }
+          - { label: "价格 (每晚)", name: "price", widget: "number" }
+          - { label: "房间图片", name: "image", widget: "image" }
