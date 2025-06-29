@@ -14,9 +14,8 @@ collections:
   # 集合 1: 网站全局设置
   - name: "settings"
     label: "网站设置"
-    # 这是一个 "文件集合"，用于管理单个或多个特定文件
     files:
-      - file: "_settings/site.json" # 此集合只管理这一个文件
+      - file: "_settings/site.json"
         label: "基本信息"
         name: "site_settings"
         fields:
@@ -26,20 +25,19 @@ collections:
   # 集合 2: 客房管理
   - name: "rooms_list"
     label: "客房管理"
-    # 使用 "file" 属性，将所有客房数据保存在这一个文件里
-    # 这种方式对初学者最友好
-    file: "api/rooms.json"
     label_singular: "客房列表"
     description: "在这里管理所有的客房信息"
-    fields:
-      # 这个 "list" 类型的字段，允许你在一个文件里创建多条记录
-      - name: "rooms"
-        label: "客房列表"
-        label_singular: "客房"
-        widget: "list"
-        # 下面是列表里每个 "客房" 项目包含的字段
+    files:
+      - file: "api/rooms.json"
+        label: "客房数据"
+        name: "rooms"
         fields:
-          - { label: "房间名称", name: "name", widget: "string" }
-          - { label: "房间描述", name: "description", widget: "text" }
-          - { label: "价格 (每晚)", name: "price", widget: "number" }
-          - { label: "房间图片", name: "image", widget: "image" }
+          - name: "rooms"
+            label: "客房列表"
+            label_singular: "客房"
+            widget: "list"
+            fields:
+              - { label: "房间名称", name: "name", widget: "string" }
+              - { label: "房间描述", name: "description", widget: "text" }
+              - { label: "价格 (每晚)", name: "price", widget: "number" }
+              - { label: "房间图片", name: "image", widget: "image" }
