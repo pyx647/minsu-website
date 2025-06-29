@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main # 你的GitHub分支名称
+
+media_folder: "images/uploads" # 图片上传文件夹
+public_folder: "/images/uploads" # 公共访问路径
+
+collections:
+  - name: "rooms" # 房间管理
+    label: "客房管理"
+    folder: "_rooms"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "房间名称", name: "title", widget: "string"}
+      - {label: "房间描述", name: "description", widget: "text"}
+      - {label: "价格", name: "price", widget: "number"}
+      - {label: "房间图片", name: "image", widget: "image"}
+      - {label: "入住状态", name: "status", widget: "select", options: ["可预订", "已入住", "维护中"]}
+      - {label: "房间设施", name: "facilities", widget: "list", default: ["WiFi", "空调", "独立卫浴"]}
+      - {label: "最大入住人数", name: "max_guests", widget: "number", default: 2}
+      - {label: "房间面积", name: "area", widget: "string", required: false}
+      - {label: "特殊说明", name: "notes", widget: "text", required: false}
+
+  - name: "bookings" # 预订管理
+    label: "预订管理"
+    folder: "_bookings"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "客人姓名", name: "guest_name", widget: "string"}
+      - {label: "联系电话", name: "phone", widget: "string"}
+      - {label: "房间", name: "room", widget: "string"}
+      - {label: "入住日期", name: "checkin_date", widget: "datetime"}
+      - {label: "退房日期", name: "checkout_date", widget: "datetime"}
+      - {label: "客人人数", name: "guests", widget: "number"}
+      - {label: "预订状态", name: "status", widget: "select", options: ["已预订", "已入住", "已退房", "已取消"]}
+      - {label: "总金额", name: "total_amount", widget: "number"}
+      - {label: "备注", name: "notes", widget: "text", required: false}
+
+  - name: "settings" # 网站设置
+    label: "网站设置"
+    files:
+      - label: "基本信息"
+        name: "general"
+        file: "_data/settings.yml"
+        fields:
+          - {label: "民宿名称", name: "site_title", widget: "string"}
+          - {label: "民宿描述", name: "description", widget: "text"}
+          - {label: "联系电话", name: "phone", widget: "string"}
+          - {label: "邮箱", name: "email", widget: "string"}
+          - {label: "地址", name: "address", widget: "text"}
+          - {label: "营业时间", name: "hours", widget: "string"}
+          - {label: "首页标语", name: "hero_text", widget: "string"}
+
+  - name: "news" # 动态更新
+    label: "民宿动态"
+    folder: "_news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "发布日期", name: "date", widget: "datetime"}
+      - {label: "内容", name: "body", widget: "markdown"}
+      - {label: "是否显示在首页", name: "featured", widget: "boolean", default: false}
