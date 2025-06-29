@@ -5,227 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>梦想民宿 - 温馨舒适的住宿体验</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .rooms-section {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-        
-        .rooms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .room-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .room-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .room-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #ddd, #eee);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.1rem;
-        }
-        
-        .room-content {
-            padding: 1.5rem;
-        }
-        
-        .room-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .room-description {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .room-price {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .room-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        
-        .available {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .occupied {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        .contact-section {
-            padding: 4rem 0;
-            background: white;
-            text-align: center;
-        }
-        
-        .contact-info {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 2rem;
-        }
-        
-        .contact-item {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .rooms-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 960px; margin: 20px auto; padding: 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { margin-bottom: 10px; }
+        .rooms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .room-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .room-card img { width: 100%; height: 200px; object-fit: cover; }
+        .room-card-content { padding: 15px; }
+        .room-card h3 { margin-bottom: 10px; color: #0056b3; }
+        .room-card p { margin-bottom: 5px; }
+        .room-card .price { font-weight: bold; color: #d9534f; }
+        .loading { text-align: center; padding: 50px; font-size: 1.2em; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>梦想民宿</h1>
-            <p class="subtitle">体验家的温暖，享受旅途的美好</p>
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1 id="site-title">梦想民宿</h1>
+            <p id="site-tagline">温馨舒适的住宿体验</p>
+        </header>
 
-    <section class="rooms-section">
-        <div class="container">
-            <h2 class="section-title">精品客房</h2>
-            <div class="rooms-grid" id="rooms-container">
-                <!-- 房间信息将通过JavaScript动态加载 -->
-                <div class="room-card">
-                    <div class="room-image">温馨大床房</div>
-                    <div class="room-content">
-                        <h3 class="room-title">温馨大床房</h3>
-                        <p class="room-description">宽敞舒适的大床房，配有独立卫浴、空调、WiFi等设施</p>
-                        <div class="room-price">¥288/晚</div>
-                        <span class="room-status available">可预订</span>
-                    </div>
-                </div>
-
-                <div class="room-card">
-                    <div class="room-image">浪漫情侣套房</div>
-                    <div class="room-content">
-                        <h3 class="room-title">浪漫情侣套房</h3>
-                        <p class="room-description">精心设计的情侣套房，营造浪漫温馨的住宿体验</p>
-                        <div class="room-price">¥388/晚</div>
-                        <span class="room-status occupied">已入住</span>
-                    </div>
-                </div>
-
-                <div class="room-card">
-                    <div class="room-image">家庭亲子房</div>
-                    <div class="room-content">
-                        <h3 class="room-title">家庭亲子房</h3>
-                        <p class="room-description">适合家庭入住，配有儿童床和玩具，让孩子也能开心度假</p>
-                        <div class="room-price">¥428/晚</div>
-                        <span class="room-status available">可预订</span>
-                    </div>
-                </div>
+        <main>
+            <h2>我们的客房</h2>
+            <!-- 客房列表将通过JS动态加载到这里 -->
+            <div id="rooms-grid" class="rooms-grid">
+                <p class="loading">正在加载客房信息...</p>
             </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
-    <section class="contact-section">
-        <div class="container">
-            <h2 class="section-title">联系我们</h2>
-            <div class="contact-info">
-                <div class="contact-item">📍 地址：某某市某某区美丽街道123号</div>
-                <div class="contact-item">📞 电话：138-0000-0000</div>
-                <div class="contact-item">📧 邮箱：info@dreambnb.com</div>
-                <div class="contact-item">🕒 营业时间：24小时服务</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 梦想民宿. 保留所有权利.</p>
-        </div>
-    </footer>
-
+    <!-- 关键的JS部分：用于获取CMS内容并渲染到页面上 -->
     <script>
-        // 这里可以添加JavaScript来动态加载CMS数据
-        // 实际使用时会连接到Netlify CMS的数据
-        console.log('网站加载完成');
+        // 当页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', () => {
+            const roomsGrid = document.getElementById('rooms-grid');
+
+            // 使用 fetch API 从 Netlify CMS 生成的 JSON 文件中获取数据
+            // 注意：Netlify CMS 会把 _rooms 文件夹里的内容处理成一个 API
+            // 对于单个文件，可以直接访问，如 /_settings/site.json
+            // 对于集合，Netlify CMS 本身不直接生成集合API，但Git Gateway可以
+            // 为了简化，我们假设客房数据被构建工具（或手动）整合成一个 `rooms.json`
+            // 但更现代、更简单的方法是直接从Git内容中拉取。
+            // 我们这里使用一个技巧：让Netlify CMS生成内容，我们通过JS去读取这些文件。
+            // 一个简单的方法是先获取一个索引文件（如果存在），或者直接去访问API。
+            // 对于最简单的无构建工具的场景，我们可以使用 Netlify 的 API。
+
+            // 为了让本教程无需构建工具即可运行，我们采取以下策略：
+            // 1. CMS将每个房间保存为 `_rooms/房间名.json`
+            // 2. 我们需要一个方法知道所有房间的文件名。这通常需要构建步骤。
+            // 3. 为避免复杂性，我们先硬编码获取一个示例文件，并展示如何获取网站设置。
+
+            // 获取网站设置
+            fetch('/_settings/site.json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('site-title').textContent = data.title || "梦想民宿";
+                    document.getElementById('site-tagline').textContent = data.tagline || "温馨舒适的住宿体验";
+                })
+                .catch(error => console.error('Error fetching site settings:', error));
+
+
+            // 真实项目中，你会用Eleventy, Next.js等工具在构建时生成 rooms.json
+            // 这里我们为了演示，直接写一个函数来模拟获取并渲染。
+            // 在 Netlify CMS 中创建内容后，你需要手动创建或通过脚本生成下面的 `api/rooms.json`
+            // 或者，我们将修改 config.yml，让它把所有房间数据保存在一个文件里
+            // --- 这是最适合初学者的方案 ---
+            
+            fetch('/api/rooms.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('无法加载客房数据，请确保在后台至少保存过一次“客房列表”。');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    roomsGrid.innerHTML = ''; // 清空加载提示
+                    if (data.rooms && data.rooms.length > 0) {
+                        data.rooms.forEach(room => {
+                            const card = document.createElement('div');
+                            card.className = 'room-card';
+                            card.innerHTML = `
+                                <img src="${room.image}" alt="${room.name}">
+                                <div class="room-card-content">
+                                    <h3>${room.name}</h3>
+                                    <p>${room.description}</p>
+                                    <p class="price">价格：¥${room.price} /晚</p>
+                                </div>
+                            `;
+                            roomsGrid.appendChild(card);
+                        });
+                    } else {
+                        roomsGrid.innerHTML = '<p>暂无客房信息，请前往后台添加。</p>';
+                    }
+                })
+                .catch(error => {
+                    roomsGrid.innerHTML = `<p style="color: red;">${error.message}</p>`;
+                    console.error('Error fetching rooms:', error);
+                });
+        });
     </script>
 </body>
 </html>
